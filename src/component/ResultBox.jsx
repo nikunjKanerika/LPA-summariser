@@ -2,7 +2,7 @@ import React from 'react';
 import { FaEnvelope, FaFilePdf, FaClipboardList } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-const Confirmation = ({ email, pdfName, rules }) => {
+const Confirmation = ({ email, pdf, rules }) => {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
@@ -26,7 +26,7 @@ const Confirmation = ({ email, pdfName, rules }) => {
           <div className="flex items-center mb-4">
             <FaFilePdf className="text-red-500 mr-2" size={20} />
             <span className="font-medium">Uploaded PDF: </span>
-            <span className="ml-2">{pdfName}</span>
+            <span className="ml-2">{pdf}</span>
           </div>
           <div className="flex items-center">
             <FaClipboardList className="text-blue-500 mr-2" size={20} />
