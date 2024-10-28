@@ -12,7 +12,6 @@ const FormBox = ({ email, setEmail, pdfName, setPdfName, rules, setRules }) => {
   const [pdfError, setPdfError] = useState('');
   const [pdfStatusClass, setPdfStatusClass] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalRules, setModalRules] = useState(rules); // Separate state for modal rules
   const navigate = useNavigate();
 
   const handleFileChange = (e) => {
@@ -33,7 +32,6 @@ const FormBox = ({ email, setEmail, pdfName, setPdfName, rules, setRules }) => {
             setPdfError('');
             setPdfName(file.name);
             setPdfStatusClass('bg-green-200 text-green-600');
-            console.log("PDF Name set to:", file.name); // Debugging log
           }
         } catch (error) {
           setPdfError('Error reading the PDF file. Please upload a valid PDF.');
@@ -48,17 +46,16 @@ const FormBox = ({ email, setEmail, pdfName, setPdfName, rules, setRules }) => {
   };
 
   const handleChange = (e) => {
-    setModalRules(e.target.value); // Update modal state directly
+    setRules(e.target.value);
   };
 
   const handleResult = () => {
     navigate('/result');
   };
 
-  const isButtonDisabled = !email || !pdfName || modalRules.trim().length === 0; // Use modalRules for validation
+  const isButtonDisabled = !email || !pdfName || rules.length === 0;
 
   const openModal = () => {
-    setModalRules(rules); // Set the modal rules to the current rules
     setIsModalOpen(true);
   };
 
@@ -108,11 +105,11 @@ const FormBox = ({ email, setEmail, pdfName, setPdfName, rules, setRules }) => {
           </div>
           <textarea
             id="rules"
-            value={modalRules} // Use modalRules for displaying current value
-            onChange={handleChange} // Update modal state directly
+            value={rules}
+            onChange={handleChange}
             placeholder="Type your rules here..."
             className="w-full h-80 p-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
-            style={{ overflowY: modalRules.length > 0 ? 'auto' : 'hidden' }}
+            style={{ overflowY: rules.length > 0 ? 'auto' : 'hidden' }}
           />
         </div>
 
@@ -129,21 +126,18 @@ const FormBox = ({ email, setEmail, pdfName, setPdfName, rules, setRules }) => {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-white rounded-lg p-6 w-11/12 max-w-md mx-auto">
-            <h2 className="text-2xl font-semibold mb-4">Add/Edit Rules</h2>
+            <h2 className="text-2xl font-semibold mb-4">Edit Rules</h2>
             <textarea
               id="rules-modal"
-              value={modalRules} // Bind to modalRules state
-              onChange={(e) => setModalRules(e.target.value)} // Update modal state
+              value={rules}
+              onChange={handleChange}
               placeholder="Type your rules here..."
               className="w-full h-40 p-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
             />
             <div className="flex justify-end mt-4">
               <button
                 type="button"
-                onClick={() => {
-                  setRules(modalRules); // Update the main rules state with modalRules
-                  closeModal();
-                }}
+                onClick={closeModal}
                 className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
               >
                 Save
