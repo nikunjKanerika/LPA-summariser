@@ -14,26 +14,23 @@ const App = () => {
       <div className='w-screen h-screen'>
         <Header />
         <Routes>
-          {/* Define the route for the FormBox component */}
           <Route
             path="/"
             element={
               <FormBox
-                Email={email}
+                email={email} // Use lowercase 'email'
                 setEmail={setEmail}
+                pdfName={pdfname} // Use pdfName instead of setPdfname
                 setPdfName={setPdfname}
                 rules={rules}
                 setRules={setRules}
               />
             }
           />
-
-          {/* Define the route for the Result component */}
           <Route
             path="/result"
-            element={<Result email={email} pdf={pdfname} rules={rules} />}
+            element={<Result email={email} pdfName={pdfname} rules={rules} />}
           />
-
         </Routes>
       </div>
     </Router>
