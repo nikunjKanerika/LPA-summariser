@@ -104,7 +104,7 @@ const FormBox = ({ email, setEmail, pdfName, setPdfName, rules, setRules }) => {
         <div className="mb-4 relative">
           <div className="flex items-center justify-between mb-4">
             <label htmlFor="rules" className="block mb-2 text-2xl font-medium text-gray-700">Rules</label>
-            <FaEdit className="text-blue-500 cursor-pointer" size={28} onClick={openModal} />
+            <FaEdit className="text-blue-500 hover:bg-hover-gradient hover:rounded-lg hover:text-white hover:p-1 transition-all duration-300 cursor-pointer" size={28} onClick={openModal} />
           </div>
           <textarea
             id="rules"
@@ -120,7 +120,7 @@ const FormBox = ({ email, setEmail, pdfName, setPdfName, rules, setRules }) => {
           type="button"
           onClick={handleResult}
           disabled={isButtonDisabled}
-          className={`w-full p-3 text-lg font-semibold text-white bg-blue-600 rounded-lg transition ${isButtonDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'}`}
+          className={`w-full p-3 text-lg font-semibold text-white bg-custom-gradient rounded-lg transition ${isButtonDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-hover-gradient'}`}
         >
           Generate the Summary
         </button>
@@ -144,7 +144,7 @@ const FormBox = ({ email, setEmail, pdfName, setPdfName, rules, setRules }) => {
                   setRules(modalRules); // Update the main rules state with modalRules
                   closeModal();
                 }}
-                className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                className="px-4 py-2 text-white bg-custom-gradient rounded-lg hover:bg-hover-gradient"
               >
                 Save
               </button>

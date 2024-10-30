@@ -41,7 +41,7 @@ const Confirmation = ({ email, pdf, rules }) => {
         </div>
         <button
           onClick={handleGoHome}
-          className="w-full p-3 text-lg font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+          className="w-full p-3 text-lg font-semibold text-white bg-custom-gradient rounded-lg hover:bg-hover-gradient transition"
         >
           Go Home
         </button>
